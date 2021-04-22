@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1035409755871",
+    "project_id": "domi-app-b590e",
+    "storage_bucket": "domi-app-b590e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1035409755871:android:fc237f5551e9cc34b5636a",
+        "android_client_info": {
+          "package_name": "com.example.restaurantes_tipoventas_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1035409755871-rre5bmdm76vk3b9mcb8lhr30f3sccs39.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAa0g64FnsFk1x92Y2d71rtSBbO9Q8w5Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1035409755871-rre5bmdm76vk3b9mcb8lhr30f3sccs39.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
