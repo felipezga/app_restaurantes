@@ -54,7 +54,7 @@ class PaginaHome extends StatelessWidget{
             Container(
               alignment: Alignment.centerLeft,
               padding: EdgeInsets.all(10),
-              child: Text("Hola \nFelipe Rios", style: TextStyle(
+              child: Text("Bienvenido \n  ", style: TextStyle(
                   fontSize: 40,
                   fontWeight: FontWeight.w700
               ),),
@@ -69,87 +69,9 @@ class PaginaHome extends StatelessWidget{
                 ],
               ),
             ),
-
-                /*Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Column(
-                      children: <Widget>[
-                        Padding(
-                          padding: EdgeInsets.all(10),
-                          child: RaisedButton(
-                            color: Colors.white,
-                            shape: new RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0)),
-                            onPressed: () {
-                              Navigator.pushNamed(context, "/restaurantemenu");
-                              },
-                            child: SizedBox(
-                              width: 100,
-                              height: 100,
-                              child: Center(
-              child: Column( // Replace with a Row for horizontal icon + text
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  Icon(Icons.menu , size: 40,),
-                  Text("MENU",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        //color: Colors.indigo,
-                        fontWeight: FontWeight.w900
-                    ),
-
-                  ),
-                ],
-              ),
-            ),
-          ),
+          ],
         ),
-      )
-      ],
-    ),
-    Column(
-    children: <Widget>[
-    Padding(
-    padding: EdgeInsets.all(10),
-    child: RaisedButton(
-    color: Colors.white,
-    shape: new RoundedRectangleBorder(
-    borderRadius: BorderRadius.circular(10.0)),
-    onPressed: () {Navigator.pushNamed(context, "/restaurante");},
-    child: SizedBox(
-    width: 100,
-    height: 100,
-    child: Center(
-      child: Column( // Replace with a Row for horizontal icon + text
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
-          Icon(Icons.apps , size: 40,),
-          Text("TIPO VENTA",
-            textAlign: TextAlign.center,
-            style: TextStyle(
-                //color: Colors.indigo,
-                fontWeight: FontWeight.w900
-            ),
-          ),
-        ],
       ),
-
-    ),
-    ),
-    ),
-    )
-    ],
-    ),
-    ],
-    ),*/
-
-
-    ],
-    ),
-    ),
-
-
 
 
     );

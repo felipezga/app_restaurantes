@@ -111,7 +111,7 @@ class _LoginBuilderState extends State<LoginBuilder> {
                       children: <Widget>[
                         Center(
                             child: Text(
-                              "APP RESTAURANTE",
+                              "APP RESTAURANTES",
                               style: TextStyle(
                                 fontSize: 28,
                                 fontWeight: FontWeight.bold,
@@ -167,7 +167,7 @@ class _LoginBuilderState extends State<LoginBuilder> {
                                           ],
                                         )
                                       : RaisedButton(
-                                          color: Colors.blueGrey,
+                                          color: Colors.red,
                                           disabledColor: Colors.blueAccent,
                                           disabledTextColor: Colors.white,
                                           shape: RoundedRectangleBorder(

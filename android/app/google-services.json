@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "1035409755871",
-    "project_id": "domi-app-b590e",
-    "storage_bucket": "domi-app-b590e.appspot.com"
+    "project_number": "567893888588",
+    "project_id": "restaurante-frisby",
+    "storage_bucket": "restaurante-frisby.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1035409755871:android:fc237f5551e9cc34b5636a",
+        "mobilesdk_app_id": "1:567893888588:android:36f6ffa56c8552af576ee9",
         "android_client_info": {
           "package_name": "com.example.restaurantes_tipoventas_app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1035409755871-rre5bmdm76vk3b9mcb8lhr30f3sccs39.apps.googleusercontent.com",
+          "client_id": "567893888588-pq2gjdosoefh7h72pk1naajkb4nql3m7.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAAa0g64FnsFk1x92Y2d71rtSBbO9Q8w5Y"
+          "current_key": "AIzaSyC7UoPLMuGpAQSxLOZSRNyGfE3rc6MvL1U"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1035409755871-rre5bmdm76vk3b9mcb8lhr30f3sccs39.apps.googleusercontent.com",
+              "client_id": "567893888588-pq2gjdosoefh7h72pk1naajkb4nql3m7.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
