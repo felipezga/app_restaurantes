@@ -47,6 +47,16 @@ Drawer buildDrawer(BuildContext context, String currentRoute) {
               },
             ),
             Divider(),
+            ListTile(
+              //leading: Icon(Icons.restaurant_menu_rounded),
+              title: const Text('Version'),
+              subtitle: const Text('1.0.2'),
+              //selected: currentRoute == Restaurante.route,
+              /*onTap: () {
+                //Navigator.pushReplacementNamed(context, Restaurante.route);
+                Navigator.popAndPushNamed(context, Restaurante.route);
+              },*/
+            ),
 
           ]
       )

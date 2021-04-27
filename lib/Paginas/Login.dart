@@ -61,6 +61,7 @@ class LoginBuilder extends StatefulWidget {
 }
 
 class _LoginBuilderState extends State<LoginBuilder> {
+  bool hidePassword = true;
   final _userNameController = TextEditingController();
   final _passwordController = TextEditingController();
 
@@ -82,8 +83,15 @@ class _LoginBuilderState extends State<LoginBuilder> {
               MaterialPageRoute(builder: (context) => PaginaHome()),
               (Route<dynamic> route) => false);
         }else if (state is ErrorLoginState) {
-          final snackBar =
-           Text("error");
+          /*final snackBar = SnackBar(content: Text(state.errorMessage));
+          scaffoldKey.currentState.showSnackBar(snackBar);*/
+        print("Es aquiddd");
+          // ignore: deprecated_member_use
+          Scaffold.of(context).showSnackBar(SnackBar(
+            backgroundColor: Colors.red,
+            content: Text(state.errorMessage),
+            duration: Duration(seconds: 3),
+          ));
         }
       },
       //bloc: BlocProvider.of<LoginBloc>(context),
@@ -120,13 +128,30 @@ class _LoginBuilderState extends State<LoginBuilder> {
                         ),
                         SizedBox(height: 10.0),
                         TextFormField(
-                          decoration: InputDecoration(labelText: 'Documento'),
+                          decoration: InputDecoration(
+                            labelText: 'Documento',
+                          ),
                           controller: _userNameController,
                         ),
                         TextFormField(
-                          decoration: InputDecoration(labelText: 'Clave'),
+                          decoration: InputDecoration(
+                            labelText: 'Clave',
+                            suffixIcon: IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  hidePassword = !hidePassword;
+                                });
+                              },
+                              color: Theme.of(context)
+                                  .accentColor
+                                  .withOpacity(0.4),
+                              icon: Icon(hidePassword
+                                  ? Icons.visibility_off
+                                  : Icons.visibility),
+                            ),
+                          ),
                           controller: _passwordController,
-                          obscureText: true,
+                          obscureText: hidePassword,
                         ),
 
                         SizedBox(

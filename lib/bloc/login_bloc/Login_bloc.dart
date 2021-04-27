@@ -38,7 +38,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
             yield LoginFinishedState();
 
           } else {
-            yield LoginInitial();
+            yield ErrorLoginState(usuarioLogin.error?.toString());
+            //yield LoginInitial();
           }
         }
 

@@ -19,9 +19,8 @@ class AuthAPIServicio {
     final response = await http.post(url, body: param);
     print("Estado");
     print(response.statusCode);
-    if (response.statusCode == 200 || response.statusCode == 400) {
+    if (response.statusCode == 200 ) {
       print(response.body);
-      print("bbb");
 
       final Map<String, dynamic> responseData = json.decode(response.body);
       //var userData = responseData['data'];
@@ -35,7 +34,19 @@ class AuthAPIServicio {
         json.decode(response.body),
       );*/
 
-    } else {
+    }
+    else if ( response.statusCode == 400) {
+      print("bbb");
+
+      final Map<String, dynamic> responseData = json.decode(response.body);
+      User authUser = User.fromJson(responseData);
+      print(authUser.name);
+
+      UserSession().saveUser(authUser);
+      return authUser;
+    }
+
+    else {
       throw Exception('Failed to load data!');
     }
   }
