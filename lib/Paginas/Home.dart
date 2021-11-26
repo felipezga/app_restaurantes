@@ -1,25 +1,19 @@
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:overlay_support/overlay_support.dart';
-import 'package:restaurantes_tipoventas_app/Servicios/NotificacionesPush.dart';
 import 'package:restaurantes_tipoventas_app/widgets/drawer.dart';
 import 'package:restaurantes_tipoventas_app/widgets/CategoriaWidget.dart';
 
-
-import 'Restaurante.dart';
-
 class PaginaHome extends StatelessWidget{
   static const String route = '/';
-  const PaginaHome({Key key}) : super(key: key);
+  const PaginaHome({Key? key}) : super(key: key);
 
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
         title: Text(" APP RESTAURANTES",
             style: TextStyle(
-                fontSize: 25,
+                fontSize: 22,
                 //color: Theme.of(context).primaryColor,
                 color: Colors.black,
                 fontWeight: FontWeight.bold
@@ -38,7 +32,8 @@ class PaginaHome extends StatelessWidget{
             left: 10
         ),
         decoration: BoxDecoration(
-          //color: Colors.yellow[700],
+            //color: Colors.blue,
+          color: Colors.yellow[700],
           image: DecorationImage(
             alignment: Alignment.bottomLeft,
             image: AssetImage('images/icono_frisby.png'),
@@ -50,16 +45,17 @@ class PaginaHome extends StatelessWidget{
         ),
         child: Column(
           children: <Widget>[
-            //SizedBox(height: 100,),
             Container(
+              height: 80,
+              //color: Colors.blueGrey,
               alignment: Alignment.centerLeft,
-              padding: EdgeInsets.all(10),
-              child: Text("Hola \nFelipe Rios", style: TextStyle(
+              padding: EdgeInsets.all(4),
+              child: Text("Bienvenido \n  ", style: TextStyle(
                   fontSize: 40,
                   fontWeight: FontWeight.w700
               ),),
             ),
-            SizedBox(height: 60,),
+            //SizedBox(height: 10,),
             Expanded(
               child: GridView.count(crossAxisCount: 2,
                 childAspectRatio: 0.85,
@@ -69,87 +65,9 @@ class PaginaHome extends StatelessWidget{
                 ],
               ),
             ),
-
-                /*Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Column(
-                      children: <Widget>[
-                        Padding(
-                          padding: EdgeInsets.all(10),
-                          child: RaisedButton(
-                            color: Colors.white,
-                            shape: new RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0)),
-                            onPressed: () {
-                              Navigator.pushNamed(context, "/restaurantemenu");
-                              },
-                            child: SizedBox(
-                              width: 100,
-                              height: 100,
-                              child: Center(
-              child: Column( // Replace with a Row for horizontal icon + text
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  Icon(Icons.menu , size: 40,),
-                  Text("MENU",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        //color: Colors.indigo,
-                        fontWeight: FontWeight.w900
-                    ),
-
-                  ),
-                ],
-              ),
-            ),
-          ),
+          ],
         ),
-      )
-      ],
-    ),
-    Column(
-    children: <Widget>[
-    Padding(
-    padding: EdgeInsets.all(10),
-    child: RaisedButton(
-    color: Colors.white,
-    shape: new RoundedRectangleBorder(
-    borderRadius: BorderRadius.circular(10.0)),
-    onPressed: () {Navigator.pushNamed(context, "/restaurante");},
-    child: SizedBox(
-    width: 100,
-    height: 100,
-    child: Center(
-      child: Column( // Replace with a Row for horizontal icon + text
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
-          Icon(Icons.apps , size: 40,),
-          Text("TIPO VENTA",
-            textAlign: TextAlign.center,
-            style: TextStyle(
-                //color: Colors.indigo,
-                fontWeight: FontWeight.w900
-            ),
-          ),
-        ],
       ),
-
-    ),
-    ),
-    ),
-    )
-    ],
-    ),
-    ],
-    ),*/
-
-
-    ],
-    ),
-    ),
-
-
 
 
     );

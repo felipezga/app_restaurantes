@@ -1,9 +1,9 @@
 class User {
-  int userId;
-  String name;
-  String email;
-  String token;
-  final String error;
+  int? userId;
+  String? name;
+  String? email;
+  String? token;
+  final String? error;
 
   User({
     this.userId,

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 
-class Buscador extends StatelessWidget{
-  const Buscador({Key key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    showDialog(
+
+  void Buscador( context )  {
+     showDialog(
         context: context,
         builder: (context) {
           return AlertDialog(
@@ -45,4 +43,3 @@ class Buscador extends StatelessWidget{
         });
 
   }
-}

@@ -1,11 +1,11 @@
 import 'package:equatable/equatable.dart';
 
 abstract class LoginState extends Equatable {
-  final List propss;
+  final List? propss;
   LoginState([this.propss]);
 
   @override
-  List<Object> get props => (propss ?? []);
+  List<Object?> get props => (propss ?? []);
 }
 
 class LoginDefaultState extends LoginState {
@@ -16,7 +16,7 @@ class LoginDefaultState extends LoginState {
 }
 
 class ErrorLoginState extends LoginState {
-  final String errorMessage;
+  final String? errorMessage;
 
   ErrorLoginState(this.errorMessage) : super([errorMessage]);
 
@@ -25,7 +25,7 @@ class ErrorLoginState extends LoginState {
 }
 
 class LoginStartingState extends LoginState {
-  final String message;
+  final String? message;
 
   LoginStartingState({this.message}) : super([message]);
 
@@ -34,7 +34,7 @@ class LoginStartingState extends LoginState {
 }
 
 class LoginFinishedState extends LoginState {
-  final String message;
+  final String? message;
 
   LoginFinishedState({this.message}) : super([message]);
 
@@ -47,8 +47,8 @@ class LoginLoading extends LoginState {}
 class LoginInitial extends LoginState {}
 
 class LoginValidatorState extends LoginState {
-  final String userNameError;
-  final String passwordError;
+  final String? userNameError;
+  final String? passwordError;
   final String text;
   //final TextFieldType type;
 
@@ -56,7 +56,7 @@ class LoginValidatorState extends LoginState {
       : super([userNameError, passwordError, text]);
 
   LoginValidatorState copyWith(
-      {String userNameError, String passwordError, String text}) {
+      {String? userNameError, String? passwordError, String? text}) {
     return LoginValidatorState(
       userNameError: userNameError ?? this.userNameError,
       passwordError: passwordError ?? this.passwordError,

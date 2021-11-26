@@ -8,9 +8,9 @@ Container categoriaHomeWidget(BuildContext context, String img, String title, St
     width: MediaQuery.of(context).size.width*0.3,
     decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.all(Radius.circular(30)),
+        borderRadius: BorderRadius.all(Radius.circular(20)),
         boxShadow: [BoxShadow(
-          color: Colors.black.withOpacity(0.1),
+          color: Colors.black.withOpacity(0.2),
           blurRadius: 20,
           spreadRadius: 1,
           offset: Offset(0,10),
@@ -18,6 +18,7 @@ Container categoriaHomeWidget(BuildContext context, String img, String title, St
     ),
     child: InkWell(
       onTap: (){
+        print("Vamos");
         //_CategoriaButtonPressed( context, '$title');
         Navigator.pushNamed(context, route);
 
@@ -65,7 +66,7 @@ Container categoryWidget(BuildContext context, String img, String title, String 
         color: Colors.white,
         borderRadius: BorderRadius.all(Radius.circular(20)),
         boxShadow: [BoxShadow(
-          color: Colors.black.withOpacity(0.5),
+          color: Colors.black.withOpacity(0.3),
           blurRadius: 20,
           spreadRadius: 1,
           offset: Offset(0,10),
