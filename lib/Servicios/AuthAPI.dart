@@ -2,15 +2,16 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:restaurantes_tipoventas_app/Modelos/clUsuarios.dart';
 
+import '../Configuraciones.dart';
 import 'UserSession.dart';
 
 class AuthAPIServicio {
-  final baseUrl = 'https://reqres.in';
 
   //Future<LoginResponseModel> login(LoginRequestModel requestModel) async {
   Future<User> login(String email, String password) async {
-    String url = "https://reqres.in/api/login";
+    String urlLogin = "https://reqres.in/api/login";
     print("LOGIN");
+    final url = Uri.parse( urlLogin );
 
 
     Map param = {"email": email, "password": password};
@@ -52,9 +53,10 @@ class AuthAPIServicio {
   }
 
   Future<dynamic> login2(String email, String password) async {
+    final url = Uri.parse( '$url_login/api/login' );
     try {
       var res = await http.post(
-        '$baseUrl/api/login',
+        url,
         body: {
           'email': email,
           'password': password,
@@ -63,7 +65,7 @@ class AuthAPIServicio {
       );
 
       //return res?.body;
-      final Map<String, dynamic> responseData = json.decode(res.body);
+      final Map<String, dynamic>? responseData = json.decode(res.body);
 
       return responseData;
     } finally {

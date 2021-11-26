@@ -1,9 +1,9 @@
 class clTipoVenta{
-  int  tipoventa_id;
-  int  restaurante_id;
-  String descripcion_tp;
-  String estado;
-  bool switched;
+  int?  tipoventa_id;
+  int?  restaurante_id;
+  String? descripcion_tp;
+  String? estado;
+  late bool switched;
 
   clTipoVenta( tipoventa_id, restaurante_id, descripcion_tp, estado, switched ){
     this.tipoventa_id = tipoventa_id;

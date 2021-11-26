@@ -8,7 +8,7 @@ import 'Home.dart';
 //import 'package:gametv/Modules/Authentication/Bloc/index.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({Key key}) : super(key: key);
+  const LoginScreen({Key? key}) : super(key: key);
 
   static const String route = '/login';
 
@@ -54,7 +54,7 @@ class LoginScreen extends StatelessWidget {
 }
 
 class LoginBuilder extends StatefulWidget {
-  const LoginBuilder({Key key}) : super(key: key);
+  const LoginBuilder({Key? key}) : super(key: key);
 
   @override
   _LoginBuilderState createState() => _LoginBuilderState();
@@ -89,7 +89,7 @@ class _LoginBuilderState extends State<LoginBuilder> {
           // ignore: deprecated_member_use
           Scaffold.of(context).showSnackBar(SnackBar(
             backgroundColor: Colors.red,
-            content: Text(state.errorMessage),
+            content: Text(state.errorMessage!),
             duration: Duration(seconds: 3),
           ));
         }
@@ -113,8 +113,8 @@ class _LoginBuilderState extends State<LoginBuilder> {
                   child: Container(
                   //padding: EdgeInsets.all(15),
                   margin: EdgeInsets.all(15),
-                  height: 280,
-                  child: Column(
+                  height: 300,
+                  child: ListView(
                       //mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Center(

@@ -7,11 +7,11 @@ class UserSession {
     print("Estamos guardando");
 
     print(user.token);
-    prefs.setInt("userId", user.userId != null ? user.userId : 123 );
-    prefs.setString("name", user.name);
-    prefs.setString("email", user.email != null ? user.userId : "felipe.rios@frisby.co" );
-    prefs.setString("token", user.token);
-    prefs.setString("error", user.error);
+    prefs.setInt("userId", user.userId != null ? user.userId! : 123 );
+    prefs.setString("name", user.name!);
+    prefs.setString("email", user.email != null ? user.userId as String : "felipe.rios@frisby.co" );
+    prefs.setString("token", user.token!);
+    prefs.setString("error", user.error!);
 
     print("object prefere");
 
@@ -22,11 +22,11 @@ class UserSession {
   Future<User> getUser() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    int userId = prefs.getInt("userId");
-    String name = prefs.getString("name");
-    String email = prefs.getString("email");
-    String token = prefs.getString("token");
-    String error = prefs.getString("error");
+    int? userId = prefs.getInt("userId");
+    String? name = prefs.getString("name");
+    String? email = prefs.getString("email");
+    String? token = prefs.getString("token");
+    String? error = prefs.getString("error");
 
     return User(
         userId: userId, name: name, email: email, token: token, error: error);
@@ -41,9 +41,9 @@ class UserSession {
     prefs.remove("error");
   }
 
-  Future<String> getToken(args) async {
+  Future<String?> getToken(args) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    String token = prefs.getString("token");
+    String? token = prefs.getString("token");
     return token;
   }
 }

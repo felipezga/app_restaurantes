@@ -5,27 +5,27 @@ enum ObjectType {
 }
 
 class clMenu {
-  int vP_ID;
-  String bodE_NOMBRE;
-  String puntO_VENTA;
-  String categoria;
-  String codigo;
-  String codigO_ALIADO;
-  String producto;
-  String grupo;
-  String item;
-  int precio;
-  String foto;
+  int? vP_ID;
+  String? bodE_NOMBRE;
+  String? puntO_VENTA;
+  String? categoria;
+  String? codigo;
+  String? codigO_ALIADO;
+  String? producto;
+  String? grupo;
+  String? item;
+  int? precio;
+  String? foto;
   String identifier = "";
-  String name;
-  String parentName;
+  String? name;
+  String? parentName;
   bool canBeExpanded = false;
   bool isExpanded = false;
-  int level;
-  int type;
+  int? level;
+  int? type;
 
-  List<clMenu> children = List<clMenu>();
-  ObjectType objectType;
+  List<clMenu> children = <clMenu>[];
+  ObjectType? objectType;
 
 
   clMenu(vP_ID, bodE_NOMBRE, puntO_VENTA, categoria, codigo, codigO_ALIADO, producto, grupo, item, precio, foto){

@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'dart:developer' as developer;
-
 import 'package:bloc/bloc.dart';
 import 'package:restaurantes_tipoventas_app/Modelos/clUsuarios.dart';
 import 'package:restaurantes_tipoventas_app/Servicios/AuthAPI.dart';
@@ -34,7 +32,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         if(usuarioLogin != null ){
           yield LoginInitial();
 
-          if (usuarioLogin.token.isNotEmpty) {
+          if (usuarioLogin.token!.isNotEmpty) {
             yield LoginFinishedState();
 
           } else {
@@ -70,7 +68,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
 
       } catch (error) {
-        yield ErrorLoginState(error?.toString());
+        yield ErrorLoginState(error.toString());
       }
     }
 

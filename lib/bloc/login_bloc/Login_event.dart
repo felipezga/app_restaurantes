@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:meta/meta.dart';
 
 abstract class LoginEvent extends Equatable {
   const LoginEvent();
@@ -10,8 +9,8 @@ class LoginButtonPressed extends LoginEvent {
   final String password;
 
   const LoginButtonPressed({
-    @required this.email,
-    @required this.password,
+    required this.email,
+    required this.password,
   });
 
   @override

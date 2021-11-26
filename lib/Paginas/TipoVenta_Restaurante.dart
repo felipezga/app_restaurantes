@@ -1,45 +1,59 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:restaurantes_tipoventas_app/Modelos/clTipoVenta.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
-
-import 'Buscador.dart';
+import 'package:restaurantes_tipoventas_app/bloc/tipoVenta_bloc/tipoVenta_bloc.dart';
+import 'package:restaurantes_tipoventas_app/bloc/tipoVenta_bloc/tipoVenta_event.dart';
+import 'package:restaurantes_tipoventas_app/bloc/tipoVenta_bloc/tipoVenta_state.dart';
 import 'Menu.dart';
 
 class TipoVentaRestaurante extends StatelessWidget {
   // This is a String for the sake of an example.
   // You can use any type you want.
-  final int opc;
-  final int id;
-  final String data;
-  final String descripcion;
+  final int? opc;
+  final int? id;
+  final String? data;
+  final String? descripcion;
 
   TipoVentaRestaurante({
-    Key key,
+    Key? key,
     this.opc,
-    @required this.id,
-    @required this.data,
+    required this.id,
+    required this.data,
     this.descripcion,
   }) : super(key: key);
 
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(descripcion),
-      ),
-      body: TipoVenta(opc:opc, id_restaurante: id, nombre: data),
-      //backgroundColor:Colors.yellow[700],
-    );
+    return
+      MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => TipoVentaBloc(),
+          ),
+          /*BlocProvider(
+            create: (context) => CambioEstadoBloc(),
+          )*/
+        ],
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text(descripcion!),
+          ),
+          body: TipoVenta(opc:opc, id_restaurante: id, nombre: data),
+          //backgroundColor:Colors.yellow[700],
+        )
+      );
+
+
+
   }
 }
 
 class TipoVenta extends StatefulWidget{
-  final int id_restaurante;
-  final int opc;
-  final String nombre;
-  TipoVenta({Key key, this.id_restaurante, this.opc, this.nombre}) : super(key: key);
+  final int? id_restaurante;
+  final int? opc;
+  final String? nombre;
+  TipoVenta({Key? key, this.id_restaurante, this.opc, this.nombre}) : super(key: key);
 
   @override
   _TipoVentaState createState() => _TipoVentaState();
@@ -47,32 +61,41 @@ class TipoVenta extends StatefulWidget{
 
 class _TipoVentaState extends State<TipoVenta> {
 
+  late TipoVentaBloc tipoVentaBloc;
+  bool isSwitched = false;
+  bool? dynamicSwitch;
+  late String myID;
+  static int? _opc;
+  String? _nombre;
+  List<clTipoVenta> TipoVentasRestaurante = [];
+  Future<List<clTipoVenta>>? _ListaTipoVentaRestaurante;
+  final SwitchedTodos = clTipoVenta(0, 0, 'Todos los tipo de venta', 'A', false);
+
   @override
   void initState(){
     super.initState();
-    _myID = widget.id_restaurante.toString();
+
+    myID = widget.id_restaurante.toString();
     _opc = widget.opc;
     _nombre = widget.nombre;
+
+    tipoVentaBloc = BlocProvider.of<TipoVentaBloc>(context);
+
+    tipoVentaBloc.add(ListarTiposVenta( myID ));
     //_myID = tipov.id_restaurante.toString();
-    print(_myID);
-    _ListaTipoVentaRestaurante = _getTipoVenta();
+    //_ListaTipoVentaRestaurante = _getTipoVenta();
 
   }
 
-  bool isSwitched = false;
-  bool dynamicSwitch;
-  static String _myID;
-  static int _opc;
-  String _nombre;
-  List<clTipoVenta> TipoVentasRestaurante = [];
-  Future<List<clTipoVenta>> _ListaTipoVentaRestaurante;
-  final SwitchedTodos = clTipoVenta(0, 0, 'Todos los tipo de venta', 'A', false);
 
 
+/*
   Future<List<clTipoVenta>> _getTipoVenta() async {
 
     //String url = "http://10.0.2.2:5000/api/restaurante/"+_myID;
-    String url = "https://10.0.2.2:5001/api/restaurante/"+_myID;
+    //String url = "https://10.0.2.2:5001/api/restaurante/"+_myID;
+
+    final url = Uri.parse( url_api +'/'+_myID!);
     print(url);
 
     final response = await http.get(url);
@@ -103,43 +126,52 @@ class _TipoVentaState extends State<TipoVenta> {
       throw Exception("Fallo la conexion");
     }
   }
-
+*/
 
   @override
   Widget build(BuildContext context) {
 
     return
-      FutureBuilder(
-        future: _ListaTipoVentaRestaurante,
-        builder: (context, snapshot){
-          if(snapshot.hasData){
-            //print(snapshot.data);
-            if(_opc == 1)
-              return  _listTipoVentaMenu(snapshot.data, _nombre);
-            return ListView(
-              children: _listTipoVentaRest(snapshot.data) ,
-            );
-          }else if(snapshot.hasError){
-            //print(snapshot.error);
-            return Text("Error");
-          }else {
-            return Center(
-              child: CircularProgressIndicator() ,
-            );
-          }
+      BlocBuilder<TipoVentaBloc, TipoVentaState>(
+    builder: (BuildContext context, TipoVentaState state) {
+      if (state is ErrorTipoVentaState) {
+        final error = state.errorMessage;
+        String message = error! + '\nTap to Retry.';
+        return Text(message);
+      }
+      if (state is TipoVentaFinishedState) {
+        print("entramos full");
 
-        },
+        _ListaTipoVentaRestaurante = state.listaTipoVentaRest;
 
-      );
+        return FutureBuilder(
+          future: _ListaTipoVentaRestaurante,
+          builder: (context, snapshot){
+            if(snapshot.hasData){
+              //print(snapshot.data);
+              if(_opc == 1)
+                return  _listTipoVentaMenu(snapshot.data as List<clTipoVenta>, _nombre);
+              return ListView(
+                children: _listTipoVentaRest(snapshot.data as List<clTipoVenta>) ,
+              );
+            }else if(snapshot.hasError){
+              //print(snapshot.error);
+              return Text("Error");
+            }else {
+              return Center(
+                child: CircularProgressIndicator() ,
+              );
+            }
 
-      //backgroundColor:Colors.yellow[700],
-      /*floatingActionButton: FloatingActionButton(
-        //onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-        backgroundColor:Colors.blue,
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-       */
+          },
+
+        );
+
+        //filteredRestaurantes = state.salida.restaurante;
+      }else{
+        return Text("Sin estado");
+      }
+    });
 
   }
     
@@ -148,7 +180,7 @@ class _TipoVentaState extends State<TipoVenta> {
   ) =>
       SwitchListTile(
         title: Text(
-          Todos.descripcion_tp,
+          Todos.descripcion_tp!,
           style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
           value: Todos.switched,
@@ -178,7 +210,7 @@ class _TipoVentaState extends State<TipoVenta> {
               //value: isSwitched,
               //value: dynamicSwitch != true ? isSwitched : dynamicSwitch,
               value: item.switched,
-              title: Text(item.descripcion_tp),
+              title: Text(item.descripcion_tp!),
               activeTrackColor: Colors.lightGreenAccent,
               activeColor: Colors.green,
 
@@ -252,7 +284,7 @@ class _TipoVentaState extends State<TipoVenta> {
     return tipoventas;
   }
 
-  _listTipoVentaMenu( List<clTipoVenta> data, String nombre)  {
+  _listTipoVentaMenu( List<clTipoVenta> data, String? nombre)  {
     List<Widget> tipoventas = [];
 
     return
@@ -261,7 +293,6 @@ class _TipoVentaState extends State<TipoVenta> {
     child: ListView.builder(
       itemCount: data.length,
       itemBuilder: (context, index) {
-        final item = data[index];
 
         /*return ListTile(
           title: item.buildTitle(context),
@@ -290,7 +321,7 @@ class _TipoVentaState extends State<TipoVenta> {
             padding: const EdgeInsets.symmetric(
                 vertical: 10, horizontal: 25),
             child: Text(
-              data[index].descripcion_tp,
+              data[index].descripcion_tp!,
               style: TextStyle(fontSize: 18),
             ),
           ),

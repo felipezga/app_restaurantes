@@ -18,6 +18,7 @@ Container categoriaHomeWidget(BuildContext context, String img, String title, St
     ),
     child: InkWell(
       onTap: (){
+        print("Vamos");
         //_CategoriaButtonPressed( context, '$title');
         Navigator.pushNamed(context, route);
 

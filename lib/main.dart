@@ -1,7 +1,4 @@
 import 'dart:io';
-
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:restaurantes_tipoventas_app/Modelos/clUsuarios.dart';
 import 'Paginas/Home.dart';
@@ -36,8 +33,7 @@ class App extends StatefulWidget {
 }
 
 class _MyAppState extends State<App> {
-  int _paginaActual = 0;
-  Future<User> _session;
+  Future<User>? _session;
 
   List<Widget> paginas = [
     PaginaHome(),
@@ -94,7 +90,8 @@ class _MyAppState extends State<App> {
               if (snapshot.hasError)
                 return Text('Error: ${snapshot.error}');
               else if (snapshot.data.token == null)
-                return LoginScreen();
+                //return LoginScreen();
+                return PaginaHome();
               else
                 //UserPreferences().removeUser();
               //return Welcome(user: snapshot.data);
@@ -117,7 +114,7 @@ class _MyAppState extends State<App> {
 
 class MyHttpOverrides extends HttpOverrides {
   @override
-  HttpClient createHttpClient(SecurityContext context) {
+  HttpClient createHttpClient(SecurityContext? context) {
     return super.createHttpClient(context)
       ..badCertificateCallback =
           (X509Certificate cert, String host, int port) => true;

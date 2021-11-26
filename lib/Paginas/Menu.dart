@@ -3,23 +3,24 @@ import 'package:restaurantes_tipoventas_app/widgets/CategoriaWidget.dart';
 
 class Menu extends StatelessWidget {
 
-  final String id;
-  String restaurante;
-   Menu({Key key, this.id, this.restaurante}) : super(key: key);
+  final String? id;
+  String? restaurante;
+   Menu({Key? key, this.id, this.restaurante}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      appBar: AppBar(title: new Text(id),),
+      appBar: AppBar(title: new Text(id!),),
       body: MenuLista(id : id, restaurante: restaurante ),
+      backgroundColor:Colors.yellow[700],
     );
   }
 
 }
 
 class MenuLista extends StatefulWidget{
-  String id;
-  String restaurante;
+  String? id;
+  String? restaurante;
   MenuLista({this.id, this.restaurante}) : super();
 
   _MenuState createState() => _MenuState();
@@ -27,8 +28,8 @@ class MenuLista extends StatefulWidget{
 }
 
 class _MenuState extends State<MenuLista> {
-  String _TipoVenta;
-  String _Restaurante;
+  String? _TipoVenta;
+  String? _Restaurante;
 
   void initState() {
     super.initState();
@@ -38,7 +39,6 @@ class _MenuState extends State<MenuLista> {
   }
 
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
     return
       Stack(
         children: <Widget>[
